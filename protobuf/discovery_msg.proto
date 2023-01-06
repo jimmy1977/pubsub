@@ -1,0 +1,42 @@
+// The discovery server receives requests from all the publishers and subscribers and maintains in memory a list of publishers and subscribers 
+
+// Stick with proto2 - has all the features necessary 
+syntax = "proto2"; 
+
+enum messenger_type { 
+    publisher    = 1; 
+    subscriber   = 2; 
+}
+
+message discovery_request { 
+    required uint32 version        = 1; 
+    required uint32 request_id     = 2; 
+    required messenger_type type   = 3; 
+    required string topic          = 4; 
+    required string host_ip        = 5; 
+    required string host_port      = 6; 
+    required uint32 heartbeat      = 7; 
+    required uint32 timeout        = 8; 
+    required string name           = 9; 
+    required uint32 uptime         = 10; 
+    required uint32 msgs           = 11; 
+    required uint32 bytes          = 12;     
+}
+
+message discovery_response { 
+    required uint32 version         = 1; 
+    required uint32 response_id     = 2; // reply back to the request with the same request id (if the publisher/subscriber wants to validate)
+    required string topic           = 3; 
+    required subscriber subscribers = 4; 
+}
+
+message subcriber { 
+    required string host_ip   = 1; 
+    required string host_port = 2; 
+}
+
+// Unused for now 
+//message publisher { 
+//    required string host_ip   = 1; 
+//    required string host_port = 2; 
+//}
