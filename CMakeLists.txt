@@ -47,6 +47,7 @@ SET(GCC_COMPILE_FLAGS "-Wall -Werror")
 
 # Create bin directory for copying all the binaries
 execute_process(COMMAND mkdir bin)
+execute_process(COMMAND mkdir generated)
 
 # Copy version.h to the appropriate build directory 
 configure_file(${CMAKE_SOURCE_DIR}/version/version.h.in ${CMAKE_BINARY_DIR}/generated/version.h)
