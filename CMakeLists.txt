@@ -35,7 +35,7 @@ execute_process(
 EXECUTE_PROCESS( COMMAND uname -m COMMAND tr -d '\n' OUTPUT_VARIABLE ARCH )
 message(STATUS "Architecture : ${ARCH}")
 # TODO - install gcc compiler for arm - then we can enable the ARM build
-i# if((${ARCH} STREQUAL "x86_64") OR (${ARCH} STREQUAL "armv7l"))
+# if((${ARCH} STREQUAL "x86_64") OR (${ARCH} STREQUAL "armv7l"))
 if((${ARCH} STREQUAL "x86_64"))
     message(STATUS "Building for ${ARCH}")
 else()
@@ -51,6 +51,11 @@ execute_process(COMMAND mkdir bin)
 # Copy version.h to the appropriate build directory 
 configure_file(${CMAKE_SOURCE_DIR}/version/version.h.in ${CMAKE_BINARY_DIR}/generated/version.h)
 
- # Include the generated directory as part of each build 
- add_subdirectory(generated)
+# Include the generated directory as part of each build 
+add_subdirectory(generated)
 
+# Generate the proto files 
+add_subdirectory(protobuf)
+
+# Add the discovery server directory 
+add_subdirectory(discovery)
