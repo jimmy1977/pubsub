@@ -4,7 +4,7 @@
 
 
 echo "Building Release Binaries"
-rm -rf build/release && mkdir build/release && chrmod 777 build/release
+rm -rf build/release && mkdir build/release && chmod 777 build/release
 cd build/release 
 cmake -DCMAKE_BUILD_TYPE=RELEASE ../..
 make -j$(grep -c ^processor /proc/cpuinfo) all
