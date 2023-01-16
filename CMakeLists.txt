@@ -56,7 +56,7 @@ configure_file(${CMAKE_SOURCE_DIR}/version/version.h.in ${CMAKE_BINARY_DIR}/gene
 add_subdirectory(generated)
 
 # Generate the proto files 
-add_subdirectory(protobuf)
+#add_subdirectory(protobuf)
 
 # Add the discovery server directory 
-add_subdirectory(discovery)
+#add_subdirectory(discovery)
