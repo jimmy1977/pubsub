@@ -4,8 +4,8 @@
 syntax = "proto2"; 
 
 enum messenger_type { 
-    publisher  = 1;
-    subscriber = 2;
+    sender    = 1;
+    receiver  = 2;
 }
 
 message discovery_request { 
@@ -30,7 +30,7 @@ message discovery_response {
     required subscriber subscribers = 4;
 }
 
-message subcriber { 
+message subscriber { 
     required string host_ip   = 1;
     required string host_port = 2;
 }
