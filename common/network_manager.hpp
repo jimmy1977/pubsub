@@ -11,8 +11,8 @@
 class NetworkManager
 {
 public:
-    NetworkManager(std::shared_ptr<ConnectionFactory> factory, int port, int recvBufLen = 256 * 1024 /* 256k */)
-        : connection_factory_(factory), port_(port), recv_buf_len_(recvBufLen), closing_(false), callback_(nullptr){};
+    NetworkManager(std::shared_ptr<MessengerFactory> factory, int port, int recvBufLen = 256 * 1024 /* 256k */)
+        : messenger_factory_(factory), port_(port), recv_buf_len_(recvBufLen), closing_(false), callback_(nullptr){};
     ~NetworkManager();
     int execute();
     void cleanup();
