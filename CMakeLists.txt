@@ -59,4 +59,4 @@ add_subdirectory(generated)
 #add_subdirectory(protobuf)
 
 # Add the discovery server directory 
-#add_subdirectory(discovery)
+add_subdirectory(discovery)
