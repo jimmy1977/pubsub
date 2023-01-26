@@ -48,7 +48,7 @@ extern const char* log_strings[];
 #endif
 #endif
 
-#define LOG_SHOULD_I(level) (level <= LOG_LEVEL && level <= log_run_level)
+#define LOG_SHOULD_I(level) (level <= LOG_LEVEL && level <= log_level)
 
 #if defined(_DEBUG)
 #define LOG(level, fmt, arg...)                                                                       \
@@ -105,7 +105,7 @@ extern const char* log_strings[];
                 break;                                                                                               \
             case LOG_DEBUG:                                                                                          \
                 fprintf(LOG_FP, CYN "%04d-%02d-%02d %02d:%02d:%02d [%s]\t %s:%d: " fmt "\n" RESET, m.tm_year + 1900, \
-                        m.tm_mon + 1, m.tm_mday, m.tm_hour, m.tm_min, m.tm_sec, log__strings[level],                 \
+                        m.tm_mon + 1, m.tm_mday, m.tm_hour, m.tm_min, m.tm_sec, log_strings[level],                 \
                         __FUNCTION__, __LINE__, ##arg);                                                              \
                 break;                                                                                               \
             }                                                                                                        \
