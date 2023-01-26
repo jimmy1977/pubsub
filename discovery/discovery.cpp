@@ -9,7 +9,7 @@
 #include <thread>
 #include <unistd.h>
 
-//#include "ar_log.h"
+#include "log.h"
 //#include "discovery_connection.hpp"
 //#include "discovery_connection_factory.hpp"
 #include "network_manager.hpp"
