@@ -17,9 +17,9 @@ add_definitions(${GCC_COMPILE_FLAGS})
 #include_directories(${PYTHON_INCLUDE_DIR})
 #include_directories(${UTIL_DIR}/include)
 
-set (COMMON_SOURCES ../../../../common/log.c)
+set (COMMON_SOURCES ${PROJECT_SOURCE_DIR}/../log/log.c)
 #set (SERVER_SOURCES ../src/network_manager.cpp ../src/socket_helper.cpp)
-
+message(STATUS "Project Source Directory ${PROJECT_SOURCE_DIR}")
 if (${CMAKE_BUILD_TYPE} STREQUAL "DEBUG")
     add_compile_options(-O0 -g)
     add_definitions( -D_DEBUG )
@@ -35,10 +35,11 @@ endif()
 
 # Include directories
 include_directories(${NANOPB_INCLUDE_DIRS})
-include_directories("../../../common/")
+include_directories("${PROJECT_SOURCE_DIR}/../common/")
+include_directories("${PROJECT_SOURCE_DIR}/../log/")
 include_directories(${CMAKE_BINARY_DIR}/server/src)
-include_directories(${CMAKE_BINARY_DIR}/generated/)
-include_directories(${CMAKE_BINARY_DIR}/generated/native)
+include_directories(${CMAKE_BINARY_DIR}/../generated/version/)
+include_directories(${CMAKE_BINARY_DIR}/../generated/native)
 
 # statsd
 #set(STATSD_DIR ${PROJECT_SOURCE_DIR}/../../third_party/statsd/)
