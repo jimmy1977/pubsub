@@ -4,7 +4,7 @@ project (discovery)
 find_package (Threads REQUIRED)
 #find_package(pybind11 REQUIRED)
 #find_package(PythonInterp REQUIRED)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20 -O3 -fPIC")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -O3 -fPIC")
 add_definitions(${GCC_COMPILE_FLAGS})
 
 #set(UTIL_DIR ${PROJECT_SOURCE_DIR}/../../util)

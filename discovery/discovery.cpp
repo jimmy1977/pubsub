@@ -4,9 +4,9 @@
 #include <exception>
 #include <functional>
 #include <iostream>
-#include <memory>
+//#include <memory>
+//#include <thread>
 #include <signal.h>
-#include <thread>
 #include <unistd.h>
 
 #include "log.h"

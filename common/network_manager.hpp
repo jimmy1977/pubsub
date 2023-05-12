@@ -7,11 +7,12 @@
 #include <list>
 #include <mutex>
 #include <thread>
+#include <memory>
 
 class NetworkManager
 {
 public:
-    NetworkManager(std::shared_ptr<MessengerFactory> factory, int port, int recvBufLen = 256 * 1024 /* 256k */)
+    NetworkManager(std::shared_ptr<MessengerFactory> factory, int32_t port, int32_t recvBufLen = 256 * 1024 /* 256k */)
         : messenger_factory_(factory), port_(port), recv_buf_len_(recvBufLen), closing_(false), callback_(nullptr){};
     ~NetworkManager();
     int execute();
@@ -23,7 +24,7 @@ public:
     }
 
 private:
-    std:: shared_ptr<MessengerFactory>                messenger_factory_;
+    std::shared_ptr<MessengerFactory>                 messenger_factory_;
     int32_t                                           port_;
     int32_t                                           recv_buf_len_;
     std::mutex                                        threads_mutex_;
