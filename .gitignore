@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Custom ignores 
+build/
+
+# Anything VSCode related 
+*.vscode*

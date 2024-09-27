@@ -1,0 +1,12 @@
+#ifndef VERSION_H
+#define VERSION_H
+
+#define MAJOR_VERSION 0
+#define MINOR_VERSION 0
+#define PATCH_VERSION 1
+#define GIT_BRANCH    "@GIT_BRANCH@"
+#define GIT_TAG_COUNT "@GIT_TAG_COUNT@"
+#define GIT_HASH      "@GIT_HASH@"
+#define BUILD_TYPE    "@CMAKE_BUILD_TYPE@"
+#define ARCH          "@ARCH@"
+#endif
