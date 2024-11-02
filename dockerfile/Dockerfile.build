@@ -1,8 +1,4 @@
-# Use Ubuntu 24.04 (development version) as the base image
-FROM ubuntu:devel
-
-# Avoid prompts from apt
-ENV DEBIAN_FRONTEND=noninteractive
+# ... existing code until apt-get install ...
 
 # Install necessary tools and dependencies
 RUN apt-get update && apt-get install -y \
@@ -17,16 +13,27 @@ RUN apt-get update && apt-get install -y \
     valgrind \
     git \
     python3-pip \
+    python3-dev \
     doxygen \
     graphviz \
     libgtest-dev \
+    protobuf-compiler \
+    python3-protobuf \
+    libprotobuf-dev \
+    nodejs \
+    npm \
+    curl \
+    unzip \
     && rm -rf /var/lib/apt/lists/*
 
-# Install pipx 
-RUN apt-get update && apt-get install -y pipx 
-RUN pipx ensurepath 
+# Install protoc plugins for JavaScript
+RUN npm install -g grpc-tools @grpc/grpc-js @grpc/proto-loader
 
-# Install conan
+# Install pipx and ensure it's in PATH
+RUN apt-get update && apt-get install -y pipx \
+    && pipx ensurepath
+
+# Install conan using pipx
 RUN pipx install conan==2.8.1
 
 # Set GCC 13 as the default compiler
@@ -43,4 +50,8 @@ WORKDIR /app
 
 ENV CXXFLAGS="-std=c++20"
 
-CMD ["/bin/bash"]
+# Add a helper script to compile protos
+#COPY compile_proto.sh /usr/local/bin/
+#RUN chmod +x /usr/local/bin/compile_proto.sh
+
+CMD ["/bin/bash"] 
