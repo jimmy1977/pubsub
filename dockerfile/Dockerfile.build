@@ -1,0 +1,57 @@
+# ... existing code until apt-get install ...
+
+# Install necessary tools and dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    meson \
+    ninja-build \
+    g++-13 \
+    gcc-13 \
+    clang-tidy \
+    cppcheck \
+    valgrind \
+    git \
+    python3-pip \
+    python3-dev \
+    doxygen \
+    graphviz \
+    libgtest-dev \
+    protobuf-compiler \
+    python3-protobuf \
+    libprotobuf-dev \
+    nodejs \
+    npm \
+    curl \
+    unzip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install protoc plugins for JavaScript
+RUN npm install -g grpc-tools @grpc/grpc-js @grpc/proto-loader
+
+# Install pipx and ensure it's in PATH
+RUN apt-get update && apt-get install -y pipx \
+    && pipx ensurepath
+
+# Install conan using pipx
+RUN pipx install conan==2.8.1
+
+# Set GCC 13 as the default compiler
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 100 \
+    && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 100
+
+# Build and install Google Test
+RUN cd /usr/src/gtest && \
+    cmake CMakeLists.txt && \
+    make && \
+    cp lib/*.a /usr/lib
+
+WORKDIR /app
+
+ENV CXXFLAGS="-std=c++20"
+
+# Add a helper script to compile protos
+#COPY compile_proto.sh /usr/local/bin/
+#RUN chmod +x /usr/local/bin/compile_proto.sh
+
+CMD ["/bin/bash"] 
